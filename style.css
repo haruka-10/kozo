@@ -1,0 +1,225 @@
+/* Reset & Basic Settings */
+body, h1, h2, h3, p, ul, li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Zen Old Mincho', serif;
+  background-color: #fdfaf6;
+  color: #4a3b32;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header - 動画背景 */
+header {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #dcd0c0;
+}
+
+header video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+}
+
+.header-content {
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  z-index: 1;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+/* Sections General */
+section {
+  padding: 60px 0;
+  border-bottom: 1px solid #eee5da;
+}
+section:last-of-type {
+  border-bottom: none;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #8B5E3C;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: normal;
+  position: relative;
+}
+
+h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #c0a080;
+  margin: 10px auto 0;
+}
+
+/* Salon Introduction */
+.salon-introduction p {
+  text-align: center;
+  font-size: 1.05rem;
+  color: #5c4d43;
+}
+
+/* Menu Section */
+.menu-section {
+  background-color: #fff;
+}
+.menu-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+.card {
+  background: #fdfaf6;
+  border: 1px solid #eee5da;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+/* ▼▼▼ スマホのタップ用にこのコードを追加します ▼▼▼ */
+.card:active {
+  transform: scale(0.98); /* タップ時に少しだけ小さく（98%に）する */
+  transition: transform 0.1s; /* 反応を素早く（0.1秒）する */
+}
+/* ▲▲▲ ここまで ▲▲▲ */
+.card h3 { font-size: 1.2rem; color: #7a5c58; margin-bottom: 15px; }
+.card .price { font-size: 1.6rem; font-weight: bold; color: #8B5E3C; margin-bottom: 15px; }
+.card .description { font-size: 0.95rem; color: #5c4d43; line-height: 1.7; }
+
+/* Hours & Access Sections */
+.hours-section p, .access-section p { text-align: center; font-size: 1rem; color: #5c4d43; }
+.hours-section p { white-space: pre-line; }
+.access-section p { margin-bottom: 20px; }
+.map-container { margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+/* ▼▼▼ この3行を追加します ▼▼▼ */
+.map-container iframe {
+  width: 100% !important; /* 横幅を強制的に100%にする */
+  display: block;      /* 隙間なく表示するためのおまじない */
+}
+/* ▲▲▲ ここまで ▲▲▲ */
+/* Reservation Button */
+.reservation-button {
+  position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+  background-color: #ab8974; color: #fff; padding: 15px 30px; text-decoration: none;
+  border-radius: 50px; font-weight: bold; font-size: 1.2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.reservation-button:hover { background-color: #997562; transform: translateY(-3px) scale(1.05); }
+
+/* Footer */
+footer {
+  text-align: center;
+  background-color: #4a3b32;
+  padding: 40px 20px;
+  color: #dcd0c0;
+}
+
+.footer-contact-links {
+  margin-bottom: 30px; /* 連絡先エリアとコピーライトの間の余白 */
+}
+
+.contact-item {
+  margin-bottom: 15px; /* 各連絡先の間の余白 */
+}
+
+.contact-item:last-child {
+  margin-bottom: 0;
+}
+
+footer a {
+  color: #ece4db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.copyright {
+  font-size: 0.9rem;
+}
+
+/* ===============================================
+   Responsive adjustments - スマホ対応
+   =============================================== */
+@media (max-width: 768px) {
+  /* ▼▼▼ この body の設定を追加します ▼▼▼ */
+  body {
+    /* 画面下部の予約ボタンとフッターが重ならないように、ページ全体の最下部に余白を確保 */
+    padding-bottom: 100px;
+  }
+  /* ▲▲▲ ここまで ▲▲▲ */
+  header {
+    height: 65vh; /* スマホでのヘッダーの高さを少し調整 */
+  }
+
+  /* ▼▼▼ スマホでの文字サイズを滑らかに調整 ▼▼▼ */
+  .header-content h1 {
+    /* clamp(最小サイズ, 推奨サイズ, 最大サイズ) */
+    font-size: clamp(2rem, 8vw, 2.5rem); 
+  }
+
+  .header-content p {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 6vw, 1.8rem);
+  }
+  /* ▲▲▲ ここまで ▲▲▲ */
+  .salon-introduction p {
+  font-size: 0.90rem; 
+}
+
+  .reservation-button {
+    width: calc(100% - 40px);
+    text-align: center;
+    padding: 18px;
+    font-size: 1.1rem;
+  }
+}
