@@ -1,14 +1,35 @@
+/* ===============================================
+   カラー設定（色の変更はこの部分だけで完結します）
+   =============================================== */
+:root {
+  --main-bg-color: #fdfaf6;      /* サイト全体の背景色（温かみのあるオフホワイト） */
+  --main-text-color: #4a3b32;    /* 基本の文字色（落ち着いたブラウン） */
+  --heading-color: #8B5E3C;      /* 見出し(H2)の色（上品なブラウン） */
+  --accent-color-1: #c0a080;     /* アクセントカラー1（見出しの下線など） */
+  --accent-color-2: #ab8974;     /* アクセントカラー2（予約ボタンなど） */
+  --card-bg-color: #fff;         /* メニューカードの背景色 */
+  --card-border-color: #eee5da;  /* メニューカードの枠線 */
+  --menu-title-color: #7a5c58;    /* メニュー名の文字色 */
+  --footer-bg-color: #4a3b32;    /* フッターの背景色（濃いブラウン） */
+  --footer-text-color: #dcd0c0;  /* フッターの文字色 */
+  --footer-link-color: #ece4db;  /* フッターのリンク色 */
+  --shadow-color-light: rgba(0, 0, 0, 0.05); /* 薄い影の色 */
+  --shadow-color-dark: rgba(0, 0, 0, 0.1);  /* 濃い影の色 */
+}
+
+/* ===============================================
+   基本設定（ここから下は基本的に変更不要です）
+   =============================================== */
+
 /* Reset & Basic Settings */
 body, h1, h2, h3, p, ul, li {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; padding: 0; box-sizing: border-box;
 }
 
 body {
   font-family: 'Zen Old Mincho', serif;
-  background-color: #fdfaf6;
-  color: #4a3b32;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
   line-height: 1.8;
   font-size: 16px;
 }
@@ -19,85 +40,77 @@ body {
   padding: 0 20px;
 }
 
-/* Header - 動画背景 */
+/* Header */
 header {
-  position: relative;
   height: 90vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid #dcd0c0;
+  text-align: center;
+  border-bottom: 1px solid var(--card-border-color);
+  /* 背景が動画か画像かで、以下のスタイルが変わります */
 }
 
-header video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+/* 動画背景用のスタイル */
+header.video-bg {
+  position: relative;
+  overflow: hidden;
+}
+header.video-bg video {
+  position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -1;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -1;
+}
+
+/* 画像背景用のスタイル */
+header.image-bg {
+  background-image: url('header-background.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
 .header-content {
-  text-align: center;
   color: white;
   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
   padding: 20px;
-  z-index: 1;
+  z-index: 1; /* 動画の上に表示するために必要 */
 }
+.header-content h1 { font-size: 3rem; font-weight: normal; letter-spacing: 1px; }
+.header-content p { font-size: 1.2rem; margin-top: 15px; }
 
-.header-content h1 {
-  font-size: 3rem;
-  font-weight: normal;
-  letter-spacing: 1px;
-}
-
-.header-content p {
-  font-size: 1.2rem;
-  margin-top: 15px;
-}
 
 /* Sections General */
 section {
   padding: 60px 0;
-  border-bottom: 1px solid #eee5da;
+  border-bottom: 1px solid var(--card-border-color);
 }
-section:last-of-type {
-  border-bottom: none;
-}
+section:last-of-type { border-bottom: none; }
 
 h2 {
   font-size: 2rem;
-  color: #8B5E3C;
+  color: var(--heading-color);
   text-align: center;
   margin-bottom: 50px;
   font-weight: normal;
   position: relative;
 }
-
 h2::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 2px;
-  background-color: #c0a080;
+  content: ''; display: block;
+  width: 60px; height: 2px;
+  background-color: var(--accent-color-1);
   margin: 10px auto 0;
 }
 
 /* Salon Introduction */
 .salon-introduction p {
-  text-align: center;
-  font-size: 1.05rem;
-  color: #5c4d43;
+  text-align: center; font-size: 1.05rem;
+  color: var(--main-text-color);
 }
 
 /* Menu Section */
 .menu-section {
-  background-color: #fff;
+  background-color: var(--card-bg-color);
 }
 .menu-cards {
   display: grid;
@@ -105,121 +118,68 @@ h2::after {
   gap: 25px;
 }
 .card {
-  background: #fdfaf6;
-  border: 1px solid #eee5da;
+  background: var(--main-bg-color);
+  border: 1px solid var(--card-border-color);
   border-radius: 8px;
   padding: 25px;
   text-align: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 15px var(--shadow-color-light);
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px var(--shadow-color-dark);
 }
-/* ▼▼▼ スマホのタップ用にこのコードを追加します ▼▼▼ */
 .card:active {
-  transform: scale(0.98); /* タップ時に少しだけ小さく（98%に）する */
-  transition: transform 0.1s; /* 反応を素早く（0.1秒）する */
+  transform: scale(0.98);
+  transition: transform 0.1s;
 }
-/* ▲▲▲ ここまで ▲▲▲ */
-.card h3 { font-size: 1.2rem; color: #7a5c58; margin-bottom: 15px; }
-.card .price { font-size: 1.6rem; font-weight: bold; color: #8B5E3C; margin-bottom: 15px; }
-.card .description { font-size: 0.95rem; color: #5c4d43; line-height: 1.7; }
+.card h3 { font-size: 1.2rem; color: var(--menu-title-color); margin-bottom: 15px; }
+.card .price { font-size: 1.6rem; font-weight: bold; color: var(--heading-color); margin-bottom: 15px; }
+.card .description { font-size: 0.95rem; color: var(--main-text-color); line-height: 1.7; }
 
 /* Hours & Access Sections */
-.hours-section p, .access-section p { text-align: center; font-size: 1rem; color: #5c4d43; }
+.hours-section p, .access-section p { text-align: center; font-size: 1rem; color: var(--main-text-color); }
 .hours-section p { white-space: pre-line; }
 .access-section p { margin-bottom: 20px; }
-.map-container { margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
-/* ▼▼▼ この3行を追加します ▼▼▼ */
-.map-container iframe {
-  width: 100% !important; /* 横幅を強制的に100%にする */
-  display: block;      /* 隙間なく表示するためのおまじない */
-}
-/* ▲▲▲ ここまで ▲▲▲ */
+.map-container { margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px var(--shadow-color-light); }
+.map-container iframe { width: 100% !important; display: block; }
+
 /* Reservation Button */
 .reservation-button {
   position: fixed; bottom: 20px; right: 20px; z-index: 1000;
-  background-color: #ab8974; color: #fff; padding: 15px 30px; text-decoration: none;
+  background-color: var(--accent-color-2);
+  color: white; padding: 15px 30px; text-decoration: none;
   border-radius: 50px; font-weight: bold; font-size: 1.2rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px var(--shadow-color-dark);
   transition: background-color 0.3s ease, transform 0.2s ease;
   display: inline-block;
 }
-.reservation-button:hover { background-color: #997562; transform: translateY(-3px) scale(1.05); }
+.reservation-button:hover { background-color: var(--heading-color); transform: translateY(-3px) scale(1.05); }
 
 /* Footer */
 footer {
-  text-align: center;
-  background-color: #4a3b32;
-  padding: 40px 20px;
-  color: #dcd0c0;
+  text-align: center; background-color: var(--footer-bg-color);
+  padding: 40px 20px; color: var(--footer-text-color);
 }
+.footer-contact-links { margin-bottom: 30px; }
+.contact-item { margin-bottom: 15px; }
+.contact-item:last-child { margin-bottom: 0; }
+footer a { color: var(--footer-link-color); text-decoration: none; transition: color 0.3s ease; }
+footer a:hover { color: white; text-decoration: underline; }
+.copyright { font-size: 0.9rem; }
 
-.footer-contact-links {
-  margin-bottom: 30px; /* 連絡先エリアとコピーライトの間の余白 */
-}
-
-.contact-item {
-  margin-bottom: 15px; /* 各連絡先の間の余白 */
-}
-
-.contact-item:last-child {
-  margin-bottom: 0;
-}
-
-footer a {
-  color: #ece4db;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-footer a:hover {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.copyright {
-  font-size: 0.9rem;
-}
-
-/* ===============================================
-   Responsive adjustments - スマホ対応
-   =============================================== */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-  /* ▼▼▼ この body の設定を追加します ▼▼▼ */
-  body {
-    /* 画面下部の予約ボタンとフッターが重ならないように、ページ全体の最下部に余白を確保 */
-    padding-bottom: 100px;
-  }
-  /* ▲▲▲ ここまで ▲▲▲ */
-  header {
-    height: 65vh; /* スマホでのヘッダーの高さを少し調整 */
-  }
-
-  /* ▼▼▼ スマホでの文字サイズを滑らかに調整 ▼▼▼ */
-  .header-content h1 {
-    /* clamp(最小サイズ, 推奨サイズ, 最大サイズ) */
-    font-size: clamp(2rem, 8vw, 2.5rem); 
-  }
-
-  .header-content p {
-    font-size: clamp(0.9rem, 4vw, 1.1rem);
-  }
-
-  h2 {
-    font-size: clamp(1.6rem, 6vw, 1.8rem);
-  }
-  /* ▲▲▲ ここまで ▲▲▲ */
-  .salon-introduction p {
-  font-size: 0.90rem; 
-}
-
+  body { padding-bottom: 100px; }
+  header { height: 65vh; }
+  .header-content h1 { font-size: clamp(2rem, 8vw, 2.5rem); }
+  .header-content p { font-size: clamp(0.9rem, 4vw, 1.1rem); }
+  h2 { font-size: clamp(1.6rem, 6vw, 1.8rem); }
+  .salon-introduction p { font-size: 0.95rem; }
   .reservation-button {
     width: calc(100% - 40px);
-    text-align: center;
-    padding: 18px;
+    text-align: center; padding: 18px;
     font-size: 1.1rem;
   }
 }
