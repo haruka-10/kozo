@@ -108,6 +108,54 @@ h2::after {
   color: var(--main-text-color);
 }
 
+/* Profile Section - 施術者紹介 */
+.profile-section {
+  background-color: var(--card-bg-color); /* 背景色を少し変えて区切りを明確に */
+}
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* 写真と文章の間の余白 */
+}
+.profile-image {
+  flex: 1; /* 比率1 */
+  max-width: 300px; /* 写真が大きくなりすぎないように */
+}
+.profile-image img {
+  width: 100%;
+  border-radius: 8px; /* 角を少し丸める */
+  box-shadow: 0 4px 15px var(--shadow-color-light);
+}
+.profile-text {
+  flex: 2; /* 比率2（文章のエリアを写真の2倍に） */
+}
+.profile-text h3 {
+  font-size: 1.5rem;
+  color: var(--heading-color);
+  margin-bottom: 20px;
+}
+.profile-specialty-title {
+  font-weight: bold;
+  margin-top: 20px;
+}
+.profile-specialty-list {
+  list-style: none; /*箇条書きの黒点を消す*/
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+.profile-specialty-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+.profile-specialty-list li::before {
+  content: '✔'; /* チェックマークのアイコン */
+  position: absolute;
+  left: 0;
+  color: var(--accent-color-2);
+}
+/* ▲▲▲ ここまで追加 ▲▲▲ */
+
 /* Menu Section */
 .menu-section {
   background-color: var(--card-bg-color);
@@ -138,6 +186,44 @@ h2::after {
 .card .price { font-size: 1.6rem; font-weight: bold; color: var(--heading-color); margin-bottom: 15px; }
 .card .description { font-size: 0.95rem; color: var(--main-text-color); line-height: 1.7; }
 
+/* Testimonials Section - お客様の声 */
+.testimonials-section {
+  background-color: var(--main-bg-color); 
+}
+.testimonial-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+.testimonial-card {
+  background: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 4px 15px var(--shadow-color-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.testimonial-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+.testimonial-text {
+  font-size: 1rem;
+  color: var(--main-text-color);
+  line-height: 1.9;
+  flex-grow: 1; 
+}
+.testimonial-author {
+  margin-top: 20px;
+  font-weight: bold;
+  color: var(--heading-color);
+  font-size: 0.9rem;
+}
+/* ▲▲▲ ここまで追加 ▲▲▲ */
 /* Hours & Access Sections */
 .hours-section p, .access-section p { text-align: center; font-size: 1rem; color: var(--main-text-color); }
 .hours-section p { white-space: pre-line; }
@@ -177,6 +263,20 @@ footer a:hover { color: white; text-decoration: underline; }
   .header-content p { font-size: clamp(0.9rem, 4vw, 1.1rem); }
   h2 { font-size: clamp(1.6rem, 6vw, 1.8rem); }
   .salon-introduction p { font-size: 0.95rem; }
+   /* ▼▼▼ この部分を追加します ▼▼▼ */
+  .profile-container {
+    flex-direction: column; /* 縦並びにする */
+    gap: 20px;
+  }
+  .profile-text {
+    text-align: center; /* スマホではテキストを中央揃えに */
+  }
+  .profile-specialty-list {
+    text-align: left; /* 箇条書き部分は読みやすさのため左揃えに */
+    display: inline-block; /* 中央揃えの中の左揃えを実現するため */
+    margin-top: 10px;
+  }
+  /* ▲▲▲ ここまで追加 ▲▲▲ */
   .reservation-button {
     width: calc(100% - 40px);
     text-align: center; padding: 18px;
