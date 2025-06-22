@@ -1,285 +1,147 @@
-/* ===============================================
-   カラー設定（色の変更はこの部分だけで完結します）
-   =============================================== */
-:root {
-  --main-bg-color: #fdfaf6;      /* サイト全体の背景色（温かみのあるオフホワイト） */
-  --main-text-color: #4a3b32;    /* 基本の文字色（落ち着いたブラウン） */
-  --heading-color: #8B5E3C;      /* 見出し(H2)の色（上品なブラウン） */
-  --accent-color-1: #c0a080;     /* アクセントカラー1（見出しの下線など） */
-  --accent-color-2: #ab8974;     /* アクセントカラー2（予約ボタンなど） */
-  --card-bg-color: #fff;         /* メニューカードの背景色 */
-  --card-border-color: #eee5da;  /* メニューカードの枠線 */
-  --menu-title-color: #7a5c58;    /* メニュー名の文字色 */
-  --footer-bg-color: #4a3b32;    /* フッターの背景色（濃いブラウン） */
-  --footer-text-color: #dcd0c0;  /* フッターの文字色 */
-  --footer-link-color: #ece4db;  /* フッターのリンク色 */
-  --shadow-color-light: rgba(0, 0, 0, 0.05); /* 薄い影の色 */
-  --shadow-color-dark: rgba(0, 0, 0, 0.1);  /* 濃い影の色 */
-}
-
-/* ===============================================
-   基本設定（ここから下は基本的に変更不要です）
-   =============================================== */
-
-/* Reset & Basic Settings */
-body, h1, h2, h3, p, ul, li {
-  margin: 0; padding: 0; box-sizing: border-box;
-}
-
 body {
-  font-family: 'Zen Old Mincho', serif;
-  background-color: var(--main-bg-color);
-  color: var(--main-text-color);
-  line-height: 1.8;
-  font-size: 16px;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 上部に寄せる */
+    min-height: 100vh;
+    margin: 20px; /* 全体に余白を追加 */
+    box-sizing: border-box;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
+.player-container {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border: 1px solid #ddd; /* 枠線を追加 */
 }
 
-/* Header */
-header {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border-bottom: 1px solid var(--card-border-color);
-  /* 背景が動画か画像かで、以下のスタイルが変わります */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-/* 動画背景用のスタイル */
-header.video-bg {
-  position: relative;
-  overflow: hidden;
-}
-header.video-bg video {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto; z-index: -1;
-}
-
-/* 画像背景用のスタイル */
-header.image-bg {
-  background-image: url('header-background.jpg');
-  background-size: cover;
-  background-position: center;
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    transition: background-color 0.2s;
+    flex-grow: 1; /* ボタンが均等な幅になるように */
 }
 
-.header-content {
-  color: white;
-  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  z-index: 1; /* 動画の上に表示するために必要 */
-}
-.header-content h1 { font-size: 3rem; font-weight: normal; letter-spacing: 1px; }
-.header-content p { font-size: 1.2rem; margin-top: 15px; }
-
-
-/* Sections General */
-section {
-  padding: 60px 0;
-  border-bottom: 1px solid var(--card-border-color);
-}
-section:last-of-type { border-bottom: none; }
-
-h2 {
-  font-size: 2rem;
-  color: var(--heading-color);
-  text-align: center;
-  margin-bottom: 50px;
-  font-weight: normal;
-  position: relative;
-}
-h2::after {
-  content: ''; display: block;
-  width: 60px; height: 2px;
-  background-color: var(--accent-color-1);
-  margin: 10px auto 0;
+button:hover {
+    background-color: #45a049;
 }
 
-/* Salon Introduction */
-.salon-introduction p {
-  text-align: center; font-size: 1.05rem;
-  color: var(--main-text-color);
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
 }
 
-/* Profile Section - 施術者紹介 */
-.profile-section {
-  background-color: var(--card-bg-color); /* 背景色を少し変えて区切りを明確に */
+.controls-top {
+    margin-bottom: 20px;
 }
-.profile-container {
-  display: flex;
-  align-items: center;
-  gap: 40px; /* 写真と文章の間の余白 */
-}
-.profile-image {
-  flex: 1; /* 比率1 */
-  max-width: 300px; /* 写真が大きくなりすぎないように */
-}
-.profile-image img {
-  width: 100%;
-  border-radius: 8px; /* 角を少し丸める */
-  box-shadow: 0 4px 15px var(--shadow-color-light);
-}
-.profile-text {
-  flex: 2; /* 比率2（文章のエリアを写真の2倍に） */
-}
-.profile-text h3 {
-  font-size: 1.5rem;
-  color: var(--heading-color);
-  margin-bottom: 20px;
-}
-.profile-specialty-title {
-  font-weight: bold;
-  margin-top: 20px;
-}
-.profile-specialty-list {
-  list-style: none; /*箇条書きの黒点を消す*/
-  padding-left: 0;
-  margin-bottom: 20px;
-}
-.profile-specialty-list li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-}
-.profile-specialty-list li::before {
-  content: '✔'; /* チェックマークのアイコン */
-  position: absolute;
-  left: 0;
-  color: var(--accent-color-2);
-}
-/* ▲▲▲ ここまで追加 ▲▲▲ */
 
-/* Menu Section */
-.menu-section {
-  background-color: var(--card-bg-color);
+.current-song {
+    margin-bottom: 20px;
+    background-color: #e9e9e9;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
 }
-.menu-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-}
-.card {
-  background: var(--main-bg-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 8px;
-  padding: 25px;
-  text-align: center;
-  box-shadow: 0 4px 15px var(--shadow-color-light);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px var(--shadow-color-dark);
-}
-.card:active {
-  transform: scale(0.98);
-  transition: transform 0.1s;
-}
-.card h3 { font-size: 1.2rem; color: var(--menu-title-color); margin-bottom: 15px; }
-.card .price { font-size: 1.6rem; font-weight: bold; color: var(--heading-color); margin-bottom: 15px; }
-.card .description { font-size: 0.95rem; color: var(--main-text-color); line-height: 1.7; }
 
-/* Testimonials Section - お客様の声 */
-.testimonials-section {
-  background-color: var(--main-bg-color); 
+.current-song p {
+    margin: 0;
+    color: #555;
+    font-size: 1.1em;
 }
-.testimonial-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-}
-.testimonial-card {
-  background: var(--card-bg-color);
-  border: 1px solid var(--card-border-color);
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 4px 15px var(--shadow-color-light);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.testimonial-icon {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  opacity: 0.5;
-}
-.testimonial-text {
-  font-size: 1rem;
-  color: var(--main-text-color);
-  line-height: 1.9;
-  flex-grow: 1; 
-}
-.testimonial-author {
-  margin-top: 20px;
-  font-weight: bold;
-  color: var(--heading-color);
-  font-size: 0.9rem;
-}
-/* ▲▲▲ ここまで追加 ▲▲▲ */
-/* Hours & Access Sections */
-.hours-section p, .access-section p { text-align: center; font-size: 1rem; color: var(--main-text-color); }
-.hours-section p { white-space: pre-line; }
-.access-section p { margin-bottom: 20px; }
-.map-container { margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px var(--shadow-color-light); }
-.map-container iframe { width: 100% !important; display: block; }
 
-/* Reservation Button */
-.reservation-button {
-  position: fixed; bottom: 20px; right: 20px; z-index: 1000;
-  background-color: var(--accent-color-2);
-  color: white; padding: 15px 30px; text-decoration: none;
-  border-radius: 50px; font-weight: bold; font-size: 1.2rem;
-  box-shadow: 0 4px 15px var(--shadow-color-dark);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: inline-block;
+#currentSongTitle {
+    font-weight: bold;
+    color: #333;
 }
-.reservation-button:hover { background-color: var(--heading-color); transform: translateY(-3px) scale(1.05); }
 
-/* Footer */
-footer {
-  text-align: center; background-color: var(--footer-bg-color);
-  padding: 40px 20px; color: var(--footer-text-color);
+.playback-controls,
+.mode-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
 }
-.footer-contact-links { margin-bottom: 30px; }
-.contact-item { margin-bottom: 15px; }
-.contact-item:last-child { margin-bottom: 0; }
-footer a { color: var(--footer-link-color); text-decoration: none; transition: color 0.3s ease; }
-footer a:hover { color: white; text-decoration: underline; }
-.copyright { font-size: 0.9rem; }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  body { padding-bottom: 100px; }
-  header { height: 65vh; }
-  .header-content h1 { font-size: clamp(2rem, 8vw, 2.5rem); }
-  .header-content p { font-size: clamp(0.9rem, 4vw, 1.1rem); }
-  h2 { font-size: clamp(1.6rem, 6vw, 1.8rem); }
-  .salon-introduction p { font-size: 0.95rem; }
-   /* ▼▼▼ この部分を追加します ▼▼▼ */
-  .profile-container {
-    flex-direction: column; /* 縦並びにする */
-    gap: 20px;
-  }
-  .profile-text {
-    text-align: center; /* スマホではテキストを中央揃えに */
-  }
-  .profile-specialty-list {
-    text-align: left; /* 箇条書き部分は読みやすさのため左揃えに */
-    display: inline-block; /* 中央揃えの中の左揃えを実現するため */
-    margin-top: 10px;
-  }
-  /* ▲▲▲ ここまで追加 ▲▲▲ */
-  .reservation-button {
-    width: calc(100% - 40px);
-    text-align: center; padding: 18px;
-    font-size: 1.1rem;
-  }
+.playback-controls button {
+    background-color: #007bff;
+}
+
+.playback-controls button:hover {
+    background-color: #0056b3;
+}
+
+.mode-controls button {
+    background-color: #6c757d;
+}
+
+.mode-controls button.active {
+    background-color: #28a745; /* アクティブ時の色 */
+    font-weight: bold;
+}
+
+.mode-controls button:hover {
+    background-color: #5a6268;
+}
+
+.playlist-container {
+    margin-top: 25px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.playlist-container h2 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+#playlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 250px; /* プレイリストの高さ制限 */
+    overflow-y: auto; /* スクロール可能にする */
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#playlist li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    cursor: pointer;
+    color: #555;
+    transition: background-color 0.2s;
+    font-size: 0.95em;
+}
+
+#playlist li:last-child {
+    border-bottom: none;
+}
+
+#playlist li:hover {
+    background-color: #e0e0e0;
+}
+
+#playlist li.active {
+    background-color: #d1ecf1;
+    font-weight: bold;
+    color: #0c5460;
 }
